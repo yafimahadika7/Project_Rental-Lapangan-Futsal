@@ -86,13 +86,27 @@ ob_start();
                 while ($row = $data->fetch_assoc()): ?>
 
                     <?php
-                    $badge = match ($row['status']) {
-                        'MENUNGGU_DP' => 'warning',
-                        'DP' => 'info',
-                        'LUNAS' => 'success',
-                        'GAGAL' => 'danger',
-                        default => 'secondary'
-                    };
+                    switch ($row['status']) {
+                        case 'MENUNGGU_DP':
+                            $badge = 'warning';
+                            break;
+
+                        case 'DP':
+                            $badge = 'info';
+                            break;
+
+                        case 'LUNAS':
+                            $badge = 'success';
+                            break;
+
+                        case 'GAGAL':
+                            $badge = 'danger';
+                            break;
+
+                        default:
+                            $badge = 'secondary';
+                            break;
+                    }
                     ?>
 
                     <tr>
